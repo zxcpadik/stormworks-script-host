@@ -1,11 +1,10 @@
 # Stormworks Script Server 
 ======================
 
-NodeJS/Typescript remote wrapper for in-game microcontrollers, based on HTTP requests.
+NodeJS/Typescript remote wrapper for in-game microcontrollers, based on HTTP requests.<br/>
 Workshop item: https://steamcommunity.com/sharedfiles/filedetails/?id=3306183971
 
 ## Getting Started
----------------
 
 ### Prerequisites
 
@@ -26,6 +25,5 @@ Workshop item: https://steamcommunity.com/sharedfiles/filedetails/?id=3306183971
 2. Edit `index.ts`
 3. Create!
 
-------
 ## License
 This project is licensed under the GPL-3.0 License. See [LICENSE](LICENSE) for details.

@@ -1,22 +1,63 @@
-
+export interface SWScript {
+  ChipID: string,
+  Input: GameBridge,
+  Output: GameBridge,
+  Screen: GameDrawBridge,
+  onTick: (() => void) | (() => Promise<void>)
+}
 
 export class GameBridge {
+  /**
+   * Direct access to number array, start with index ```0```
+   */
   public numbers: number[] = [];
+  /**
+   * Direct access to bool array, start with index ```0```
+   */
   public bools: boolean[] = [];
 
+  /**
+   * Number from bridge
+   * @param id index, starts from ```1```
+   * @returns ```number``` at index, ```0``` if not in index range
+   */
   public GetNumber(id: number) {
     return this.numbers[id - 1] || 0;
   }
+  /**
+   * Bool from bridge
+   * @param id index, starts from ```1```
+   * @returns ```bool``` at index
+   */
   public GetBool(id: number) {
     return this.bools[id - 1] || false;
   }
+  /**
+   * Set number in bridge
+   * @param id index, starts from ```1```
+   * @param value number value
+   * @returns self, ```0``` if not in range
+   */
   public SetNumber(id: number, value: number) {
+    if (id < 1 || id > 32) return 0;
     return this.numbers[id - 1] = value;
   }
+  /**
+   * Set bool in bridge
+   * @param id index, starts from ```1```
+   * @param value bool value
+   * @returns self, ```false``` if not in range
+   */
   public SetBool(id: number, value: boolean) {
+    if (id < 1 || id > 32) return false;
     return this.bools[id - 1] = value;
   }
 
+  /**
+   * Parse raw data
+   * @param str raw input string from microcontroller
+   * @returns ```true``` if parsed correctly
+   */
   public Parse(str: string) {
     let blocks = (str || "").split(';');
 
@@ -29,6 +70,10 @@ export class GameBridge {
     }
     return true;
   }
+  /**
+   * Serialize data to string
+   * @returns raw output string
+   */
   public ToString() {
     let str = '';
 

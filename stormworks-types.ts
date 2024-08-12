@@ -100,64 +100,64 @@ export class GameDrawBridge {
     return this.Width;
   }
   public setColor(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setColor', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['1', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), a.toString()].join('#')); // setColor
   }
   public drawClear() {
-    this.stack.push('drawClear');
+    this.stack.push('2'); // drawClear
   }
   public drawLine(x1: number, y1: number, x2: number, y2: number) {
-    this.stack.push(["drawLine", x1.toString(), y1.toString(), x2.toString(), y2.toString()].join('#'));
+    this.stack.push(["3", x1.toString(), y1.toString(), x2.toString(), y2.toString()].join('#')); // drawLine
   }
   public drawCircle(x: number, y: number, r: number) {
-    this.stack.push(["drawCircle", x.toString(), y.toString(), r.toString()].join('#'));
+    this.stack.push(["4", x.toString(), y.toString(), Math.round(r).toString()].join('#')); // drawCircle
   }
   public drawCircleF(x: number, y: number, r: number) {
-    this.stack.push(["drawCircleF", x.toString(), y.toString(), r.toString()].join('#'));
+    this.stack.push(["5", x.toString(), y.toString(), Math.round(r).toString()].join('#')); // drawCircleF
   }
   public drawRect(x: number, y: number, w: number, h: number) {
-    this.stack.push(["drawRect", x.toString(), y.toString(), w.toString(), h.toString()].join('#'));
+    this.stack.push(["6", x.toString(), y.toString(), w.toString(), h.toString()].join('#')); // drawRect
   }
   public drawRectF(x: number, y: number, w: number, h: number) {
-    this.stack.push(["drawRectF", x.toString(), y.toString(), w.toString(), h.toString()].join('#'));
+    this.stack.push(["7", x.toString(), y.toString(), w.toString(), h.toString()].join('#')); // drawRectF
   }
   public drawTriangle(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) {
-    this.stack.push(["drawTriangle", x1.toString(), y1.toString(), x2.toString(), y2.toString(), x3.toString(), y3.toString()].join('#'));
+    this.stack.push(["8", x1.toString(), y1.toString(), x2.toString(), y2.toString(), x3.toString(), y3.toString()].join('#')); // drawTriangle
   }
   public drawTriangleF(x1: number, y1: number, x2: number, y2: number, x3: number, y3: number) {
-    this.stack.push(["drawTriangleF", x1.toString(), y1.toString(), x2.toString(), y2.toString(), x3.toString(), y3.toString()].join('#'));
+    this.stack.push(["9", x1.toString(), y1.toString(), x2.toString(), y2.toString(), x3.toString(), y3.toString()].join('#')); // drawTriangleF
   }
   public drawText(x: number, y: number, t: string) {
-    this.stack.push(["drawText", x.toString(), y.toString(), Buffer.from(t).toString('base64')].join('#'));
+    this.stack.push(["10", x.toString(), y.toString(), Buffer.from(t).toString('base64')].join('#')); // drawText
   }
   public drawTextBox(x: number, y: number, w: number, h: number, t: string, ha: number = -1, va: number = -1) {
-    this.stack.push(["drawTextBox", x.toString(), y.toString(), w.toString(), h.toString(), Buffer.from(t).toString('base64'), ha.toString(), va.toString()].join('#'));
+    this.stack.push(["11", x.toString(), y.toString(), w.toString(), h.toString(), Buffer.from(t).toString('base64'), ha.toString(), va.toString()].join('#')); // drawTextBox
   }
   public drawMap(x: number, y: number, zoom: number) {
-    this.stack.push(["drawMap", x.toString(), y.toString(), zoom.toString()].join('#'));
+    this.stack.push(["12", x.toString(), y.toString(), zoom.toString()].join('#')); // drawMap
   }
   public setMapColorOcean(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorOcean', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['13', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorOcean
   }
   public setMapColorShallows(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorShallows', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['14', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorShallows
   }
   public setMapColorLand(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorLand', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['15', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorLand
   }
   public setMapColorGrass(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorGrass', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['16', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorGrass
   }
   public setMapColorSand(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorSand', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['17', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorSand
   }
   public setMapColorSnow(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorSnow', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['18', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorSnow
   }
   public setMapColorRock(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorRock', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['19', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorRock
   }
   public setMapColorGravel(r: number, g: number, b: number, a: number = 255) {
-    this.stack.push(['setMapColorGravel', r.toString(), g.toString(), b.toString(), a.toString()].join('#'));
+    this.stack.push(['20', Math.round(r).toString(), Math.round(g).toString(), Math.round(b).toString(), Math.round(a).toString()].join('#')); // setMapColorGravel
   }
 
   public Parse(str: string) {

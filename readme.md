@@ -5,7 +5,6 @@ NodeJS/Typescript remote wrapper for in-game microcontrollers, based on HTTP req
 Workshop item: https://steamcommunity.com/sharedfiles/filedetails/?id=3306183971
 
 ## Getting Started
----------------
 
 ### Prerequisites
 

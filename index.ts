@@ -11,16 +11,28 @@ const Scripts: SWScript[] = [
 
 const app = express();
 
+let c = 0;
+let cl = 0;
+setInterval(() => {
+  let diff = c - cl;
+  cl = c;
+  console.log(`[TPS] Avg 1 min: ${(diff / 60).toFixed(1)}`);
+}, 60000);
+
 app.get('/*', async (req, res) => {
   let ChipID = req.path.split('/')[1]!;
   let Script = Scripts.find(x => x.ChipID.toLowerCase() === ChipID.toLowerCase());
   if (!Script) return res.sendStatus(404);
 
+  c++;
   let ok = Script.Input.Parse(req.query['data'] as string);
   Script.Screen.Parse(req.query['data'] as string);
   if (!ok) return;
+
   await Script.onTick();
+
   let data = Script.Output.ToString() + Script.Screen.ToString();
+  //console.log(`[DATA] Sent ${(data.length / 1024).toFixed(1)}kB`);
   res.send(data);
 });
 app.listen({ port: 8080 }, () => {

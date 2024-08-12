@@ -12,6 +12,7 @@
   "description": "",
   "dependencies": {
     "express": "^4.19.2",
+    "hrtimer": "github:dannynemer/hrtimer",
     "typescipt": "^1.0.0"
   },
   "devDependencies": {

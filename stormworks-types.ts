@@ -63,10 +63,10 @@ export class GameBridge {
 
     if (blocks.length < 64) return false;
     for (let i = 0; i < 32; i++) {
-      this.numbers[i] = Number.parseFloat(blocks[i]);
+      this.numbers[i] = Number(blocks[i]);
     }
     for (let i = 32; i < 64; i++) {
-      this.bools[i - 32] = !!Number.parseInt(blocks[i]);
+      this.bools[i - 32] = (blocks[i] == '1');
     }
     return true;
   }
@@ -78,10 +78,10 @@ export class GameBridge {
     let str = '';
 
     for (let i = 0; i < 32; i++) {
-      str += (this.numbers[i] || 0).toString() + ';';
+      str += (this.numbers[i] || 0) + ';';
     }
     for (let i = 0; i < 32; i++) {
-      str += (+(this.bools[i] || false)).toString() + ';';
+      str += (+(this.bools[i] || false)) + ';';
     }
 
     return str;
@@ -127,7 +127,8 @@ export class GameDrawBridge {
     this.stack.push(["9", x1.toString(), y1.toString(), x2.toString(), y2.toString(), x3.toString(), y3.toString()].join('#')); // drawTriangleF
   }
   public drawText(x: number, y: number, t: string) {
-    this.stack.push(["10", x.toString(), y.toString(), Buffer.from(t).toString('base64')].join('#')); // drawText
+    //this.stack.push(["10", x.toString(), y.toString(), Buffer.from(t).toString('base64')].join('#')); // drawText
+    this.stack.push(["10", x.toString(), y.toString(), encodeURIComponent(t)].join('#'));
   }
   public drawTextBox(x: number, y: number, w: number, h: number, t: string, ha: number = -1, va: number = -1) {
     this.stack.push(["11", x.toString(), y.toString(), w.toString(), h.toString(), Buffer.from(t).toString('base64'), ha.toString(), va.toString()].join('#')); // drawTextBox
@@ -163,8 +164,8 @@ export class GameDrawBridge {
   public Parse(str: string) {
     let b = (str)!.split(';')!.pop()!.split(':')!;
     if (b.length < 2) return false;
-    this.Height = Number.parseFloat(b[0] || '0');
-    this.Width = Number.parseFloat(b[1] || '0');
+    this.Height = Number(b[0]);
+    this.Width = Number(b[1]);
     this.stack = [];
     return true;
   }

@@ -28,7 +28,7 @@ g_def = {
 	'setMapColorGravel'
 }
 
-function dec(data)
+[[function dec(data)
     local b = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
     data = string.gsub(data, '[^'..b..'=]', '')
     return (data:gsub('.', function(x)
@@ -42,6 +42,13 @@ function dec(data)
         for i=1,8 do c=c+(x:sub(i,i)=='1' and 2^(8-i) or 0) end
         return string.char(c)
     end))
+end]]
+
+function dec(encoded_str)
+  encoded_str = encoded_str:gsub("+", " ")
+  return encoded_str:gsub("%%(%x%x)", function(hex)
+    return string.char(tonumber(hex, 16))
+  end)
 end
 
 local function clone(t)
